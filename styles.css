@@ -1,0 +1,34 @@
+/*
+	styles.css
+
+	Contains all visual styling for the Course Explorer page. The goal is to
+	separate presentation from behavior so the HTML and JS remain focused on
+	structure and logic.
+
+	Variables:
+	--accent: primary accent color
+	--muted: page background
+	--card: panel background
+	--danger: error color
+*/
+:root{--accent:#2b7a78;--muted:#f4f4f4;--card:#ffffff;--danger:#c62828}
+body{font-family:Inter, Roboto, Arial, sans-serif;background:var(--muted);margin:0;padding:20px;color:#222}
+header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+header h1{margin:0;font-size:1.4rem;color:var(--accent)}
+.container{display:grid;grid-template-columns:300px 1fr 340px;gap:16px}
+.panel{background:var(--card);padding:12px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.upload{display:flex;flex-direction:column;gap:8px}
+label{font-size:0.9rem}
+select,input[type=file]{width:100%;padding:8px;border-radius:6px;border:1px solid #ddd}
+.filters{display:flex;flex-direction:column;gap:8px}
+.filters .group{display:flex;flex-direction:column}
+.controls{display:flex;gap:8px;align-items:center}
+.course-list{max-height:72vh;overflow:auto;padding:8px;display:flex;flex-direction:column;gap:8px}
+.course-item{padding:8px;border-radius:6px;border:1px solid #eee;cursor:pointer;background:#fafafa}
+.course-item:hover{background:#f0f7f6}
+.course-item.selected{border-color:var(--accent);background:#eaf6f5;box-shadow:0 1px 4px rgba(43,122,120,0.08)}
+.detail{max-height:72vh;overflow:auto}
+.muted{color:#666;font-size:0.9rem}
+.error{color:var(--danger);font-weight:600}
+footer{margin-top:12px;font-size:0.85rem;color:#666}
+@media (max-width:980px){.container{grid-template-columns:1fr;grid-auto-rows:auto}.detail{order:3}}

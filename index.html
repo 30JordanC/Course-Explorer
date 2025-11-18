@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Course Explorer</title>
+  <!-- styles.css contains all site styles (visual layout and theme) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Course Explorer</h1>
+    <div class="muted">Upload a JSON file of courses, then filter, sort, and click a course to see details.</div>
+  </header>
+
+  <!-- Main 3-column container:
+    - left: upload + filter panels
+    - middle: course list and sorting controls
+    - right: selected course details
+  -->
+  <div class="container">
+    <!-- Left: Upload + Filters -->
+    <section class="panel">
+      <div class="upload">
+        <label for="fileInput">Load courses (JSON)</label>
+        <input id="fileInput" type="file" accept="application/json">
+        <button id="loadExampleBtn" type="button" style="margin-top:8px; padding:8px; border-radius:6px; border:1px solid #ddd; background:#fff; cursor:pointer">Load example courses (when served)</button>
+        <div id="fileInfo" class="muted" style="font-size:0.85rem; margin-top:8px; display:none"></div>
+        <div id="fileError" class="error" role="alert" style="display:none"></div>
+      </div>
+
+      <hr style="margin:12px 0">
+
+      <div class="filters">
+        <div class="group">
+          <label for="filterLevel">Level</label>
+          <select id="filterLevel"><option value="">(All)</option></select>
+        </div>
+        <div class="group">
+          <label for="filterCredits">Credits</label>
+          <select id="filterCredits"><option value="">(All)</option></select>
+        </div>
+        <div class="group">
+          <label for="filterInstructor">Instructor</label>
+          <select id="filterInstructor"><option value="">(All)</option></select>
+        </div>
+        <div class="group">
+          <label for="filterType">Type</label>
+          <select id="filterType"><option value="">(All)</option></select>
+        </div>
+      </div>
+
+    </section>
+
+  <!-- Middle: Course list and sorting -->
+    <main class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="controls">
+          <label for="sortBy">Sort</label>
+          <select id="sortBy" style="width:180px">
+            <option value="title-asc">Title (A → Z)</option>
+            <option value="title-desc">Title (Z → A)</option>
+            <option value="id-asc">ID (small → large)</option>
+            <option value="id-desc">ID (large → small)</option>
+            <option value="sem-asc">Semester (old → new)</option>
+            <option value="sem-desc">Semester (new → old)</option>
+          </select>
+        </div>
+        <div class="muted" id="count">0 courses</div>
+      </div>
+
+      <div class="course-list panel" id="courseList" aria-live="polite">
+        <!-- dynamic list -->
+      </div>
+    </main>
+
+    <!-- Right: Course detail -->
+    <aside class="panel detail">
+      <h3>Course Details</h3>
+      <div id="courseDetails" role="region" aria-live="polite" tabindex="0"><div class="muted">Click a course to view details.</div></div>
+    </aside>
+  </div>
+
+  <footer>
+    Tip: Filters are generated from the loaded data. You can select multiple filters to refine the list.
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+    // Course class per spec
